@@ -1,6 +1,6 @@
 {
 	"name": "zod-package-json",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "Zod schema for the package.json file format",
 	"license": "MIT",
 	"author": {
