@@ -154,7 +154,7 @@ export const PackageJson = z
 	.passthrough();
 
 /**
-`PackageJson` describes the manifest file for a package.
+`PackageJson` describes the manifest for a package found in the `package.json` file.
 @see {@link https://docs.npmjs.com/cli/v10/configuring-npm/package-json}
 */
 export type PackageJson = z.infer<typeof PackageJson>;
