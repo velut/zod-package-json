@@ -138,6 +138,18 @@ export const PackageJson = z
 
 		/** True if importing modules from the package causes side effects. */
 		sideEffects: z.boolean().optional(),
+
+		/**
+		Imports map.
+		@see {@link https://nodejs.org/api/packages.html#imports}
+		*/
+		imports: z.record(z.unknown()).optional(),
+
+		/**
+		Package exports.
+		@see {@link https://nodejs.org/api/packages.html#exports}
+		*/
+		exports: z.union([z.null(), z.string(), z.array(z.string()), z.record(z.unknown())]).optional(),
 	})
 	.passthrough();
 
