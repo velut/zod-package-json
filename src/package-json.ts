@@ -106,7 +106,7 @@ export const PackageJson = z
 		/** Configuration values used at publishing time. */
 		publishConfig: z.record(z.unknown()).optional(),
 
-		/** File patterns locating local workspaces. */
+		/** File patterns for locating local workspaces. */
 		workspaces: z.array(z.string()).optional(),
 
 		/** Deprecation message. */
