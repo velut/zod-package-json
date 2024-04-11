@@ -15,15 +15,22 @@ If necessary, that can be done by extending the schema with zod methods such as
 `.transform()` or `.refine()`.
 
 @example
-Parse data from a `package.json` file.
 
 ```typescript
 import { PackageJson } from "zod-package-json";
 
-const packageJson: PackageJson = PackageJson.parse({
+// Parse data from a `package.json` file.
+const packageJson = PackageJson.parse({
   name: "foo",
   version: "1.0.0",
+  unknownProp: "who knows"
 });
+
+// Access a known property.
+packageJson.name; // "foo"
+
+// Access an unknown property.
+packageJson["unknownProp"]; // "who knows"
 ```
 
 @packageDocumentation
