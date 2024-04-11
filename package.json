@@ -54,7 +54,6 @@
 	},
 	"devDependencies": {
 		"@arethetypeswrong/cli": "^0.15.3",
-		"@total-typescript/shoehorn": "^0.1.2",
 		"@vitest/coverage-v8": "^1.5.0",
 		"np": "10.0.3",
 		"prettier": "3.2.5",
