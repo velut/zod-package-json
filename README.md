@@ -7,7 +7,7 @@
 [![npm](https://img.shields.io/npm/v/zod-package-json)](https://www.npmjs.com/package/zod-package-json)
 [![License](https://img.shields.io/github/license/velut/zod-package-json)](https://github.com/velut/zod-package-json/blob/main/LICENSE)
 
-[Zod](https://www.npmjs.com/package/zod) schemas for the [`package.json`](https://docs.npmjs.com/cli/v10/configuring-npm/package-json/) file format.
+[Zod](https://www.npmjs.com/package/zod) schema for the [`package.json`](https://docs.npmjs.com/cli/v10/configuring-npm/package-json/) file format.
 
 ## Useful resources
 

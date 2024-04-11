@@ -1,7 +1,7 @@
 {
 	"name": "zod-package-json",
 	"version": "0.1.0",
-	"description": "Zod schemas for the package.json file format",
+	"description": "Zod schema for the package.json file format",
 	"license": "MIT",
 	"author": {
 		"name": "Edoardo Scibona",
