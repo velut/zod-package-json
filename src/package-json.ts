@@ -115,7 +115,7 @@ export const PackageJson = z
 		/** Main ESM entry point for the package. */
 		module: z.string().optional(),
 
-		/** Type for all the `.js` files in the package. */
+		/** Type for all the `.js` files in the package, usually `module`. */
 		type: z.union([z.literal("module"), z.literal("commonjs")]).optional(),
 
 		/** Main TypeScript declaration file. */
