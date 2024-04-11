@@ -1,9 +1,52 @@
 import { z } from "zod";
-import { Browser } from "./browser";
-import { Bugs } from "./bugs";
-import { Funding } from "./funding";
-import { Person } from "./person";
-import { Repository } from "./repository";
+
+const Bugs = z.union([
+	z.string(),
+	z.object({
+		url: z.string().optional(),
+		email: z.string().optional(),
+	}),
+]);
+
+const Funding = z.union([
+	z.string(),
+	z.object({
+		url: z.string(),
+		type: z.string().optional(),
+	}),
+	z.array(
+		z.union([
+			z.string(),
+			z.object({
+				url: z.string(),
+				type: z.string().optional(),
+			}),
+		]),
+	),
+]);
+
+const Person = z.union([
+	z.string(),
+	z.object({
+		name: z.string(),
+		email: z.string().optional(),
+		url: z.string().optional(),
+	}),
+]);
+
+const Repository = z.union([
+	z.string(),
+	z.object({
+		/** Repository type (e.g., `git`). */
+		type: z.string(),
+
+		/** Machine-readable repository URL (e.g., `https://github.com/user/repo.git`). */
+		url: z.string(),
+
+		/** Directory in a monorepo where the package's source code is located. */
+		directory: z.string().optional(),
+	}),
+]);
 
 export const PackageJson = z
 	.object({
@@ -46,8 +89,12 @@ export const PackageJson = z
 		/** Main entry point for the package, usually CommonJS. */
 		main: z.string().optional(),
 
-		/** Main entry point for the package when used in a browser environment. */
-		browser: Browser.optional(),
+		/**
+		Main entry point for the package when used in a browser environment.
+		@see {@link https://docs.npmjs.com/cli/v10/configuring-npm/package-json#browser}
+		@see {@link https://gist.github.com/defunctzombie/4339901/49493836fb873ddaa4b8a7aa0ef2352119f69211}
+		*/
+		browser: z.union([z.string(), z.record(z.string())]).optional(),
 
 		/** Executable files. */
 		bin: z.union([z.string(), z.record(z.string())]).optional(),
