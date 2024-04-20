@@ -94,7 +94,7 @@ export const PackageJson = z
 		@see {@link https://docs.npmjs.com/cli/v10/configuring-npm/package-json#browser}
 		@see {@link https://gist.github.com/defunctzombie/4339901/49493836fb873ddaa4b8a7aa0ef2352119f69211}
 		*/
-		browser: z.union([z.string(), z.record(z.string())]).optional(),
+		browser: z.union([z.string(), z.record(z.union([z.string(), z.boolean()]))]).optional(),
 
 		/** Executable files. */
 		bin: z.union([z.string(), z.record(z.string())]).optional(),
