@@ -112,7 +112,7 @@ export const PackageJson = z
 		scripts: z.record(z.string()).optional(),
 
 		/** Configuration values for scripts. */
-		config: z.record(z.string()).optional(),
+		config: z.record(z.unknown()).optional(),
 
 		/** Production dependencies. */
 		dependencies: z.record(z.string()).optional(),
