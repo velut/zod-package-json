@@ -47,7 +47,7 @@
 		"lint": "prettier --check .",
 		"format": "prettier --write .",
 		"pre-push": "bun install && bun run lint && bun run build && bun run test:ci && bun run attw",
-		"release": "np"
+		"release": "np --no-cleanup"
 	},
 	"dependencies": {
 		"zod": "^3.23.3"
