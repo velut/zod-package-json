@@ -183,8 +183,12 @@ export const PackageJson = z
   	*/
 		packageManager: z.string().optional(),
 
-		/** True if importing modules from the package causes side effects. */
-		sideEffects: z.boolean().optional(),
+		/**
+		False if importing modules from the package does not cause side effects.
+		True or a list of file patterns if importing modules from the package causes side effects.
+		@see {@link https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free}
+		*/
+		sideEffects: z.union([z.boolean(), z.array(z.string())]).optional(),
 
 		/**
 		Imports map.
