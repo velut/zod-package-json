@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - None
 
+## [1.0.3] - 2024-06-12
+
+### Changed
+
+- Type of `sideEffects` changed from `boolean | undefined` to `boolean | string[] | undefined` (See https://github.com/velut/zod-package-json/issues/5) (Thanks @Sec-ant)
+- Upgraded dependencies
+
 ## [1.0.2] - 2024-04-23
 
 ### Changed
@@ -22,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add booleans to the `browser` object values (a1de691)
 - Widen `config` object values to `unknown` (95224f9)
 
-[unreleased]: https://github.com/velut/zod-package-json/compare/v1.0.2...HEAD
+[unreleased]: https://github.com/velut/zod-package-json/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/velut/zod-package-json/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/velut/zod-package-json/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/velut/zod-package-json/compare/v1.0.0...v1.0.1
