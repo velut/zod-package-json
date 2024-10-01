@@ -53,7 +53,7 @@
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
-		"@arethetypeswrong/cli": "^0.15.4",
+		"@arethetypeswrong/cli": "^0.16.4",
 		"@vitest/coverage-v8": "^2.0.5",
 		"np": "^10.0.7",
 		"prettier": "^3.3.3",
