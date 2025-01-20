@@ -82,6 +82,6 @@ packageJson["unknownProp"]; // "who knows"
 MIT
 ```
 
-Copyright (c) 2024 Edoardo Scibona
+Copyright (c) 2025 Edoardo Scibona
 
 See [LICENSE](./LICENSE) file.
