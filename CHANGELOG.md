@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - None
 
+## [1.1.0] - 2025-01-20
+
+### Changed
+
+- Upgraded dependencies
+
 ## [1.0.3] - 2024-06-12
 
 ### Changed
@@ -29,7 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add booleans to the `browser` object values (a1de691)
 - Widen `config` object values to `unknown` (95224f9)
 
-[unreleased]: https://github.com/velut/zod-package-json/compare/v1.0.3...HEAD
+[unreleased]: https://github.com/velut/zod-package-json/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/velut/zod-package-json/compare/v1.0.3...v1.1.0
 [1.0.3]: https://github.com/velut/zod-package-json/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/velut/zod-package-json/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/velut/zod-package-json/compare/v1.0.0...v1.0.1
