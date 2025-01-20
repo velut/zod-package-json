@@ -50,15 +50,15 @@
 		"release": "np --no-cleanup"
 	},
 	"dependencies": {
-		"zod": "^3.23.8"
+		"zod": "^3.24.1"
 	},
 	"devDependencies": {
-		"@arethetypeswrong/cli": "^0.17.0",
-		"@vitest/coverage-v8": "^2.0.5",
-		"np": "^10.0.7",
-		"prettier": "^3.3.3",
-		"tsup": "^8.2.4",
-		"typescript": "^5.5.4",
-		"vitest": "^2.0.5"
+		"@arethetypeswrong/cli": "^0.17.3",
+		"@vitest/coverage-v8": "^3.0.2",
+		"np": "^10.1.0",
+		"prettier": "^3.4.2",
+		"tsup": "^8.3.5",
+		"typescript": "^5.7.3",
+		"vitest": "^3.0.2"
 	}
 }
