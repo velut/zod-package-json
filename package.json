@@ -49,9 +49,7 @@
 		"pre-push": "bun install && bun run lint && bun run build && bun run test:ci && bun run attw",
 		"release": "np --no-cleanup"
 	},
-	"dependencies": {
-		"zod": "^3.25.64"
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"@arethetypeswrong/cli": "^0.18.2",
 		"@vitest/coverage-v8": "^3.2.3",
@@ -59,6 +57,7 @@
 		"prettier": "^3.5.3",
 		"tsup": "^8.5.0",
 		"typescript": "^5.8.3",
-		"vitest": "^3.2.3"
+		"vitest": "^3.2.3",
+		"zod": "^4.0.0"
 	}
 }
