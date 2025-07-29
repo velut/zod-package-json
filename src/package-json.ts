@@ -1,10 +1,10 @@
-import { z } from "zod";
+import * as z from "zod/mini";
 
 const Bugs = z.union([
 	z.string(),
 	z.object({
-		url: z.string().optional(),
-		email: z.string().optional(),
+		url: z.optional(z.string()),
+		email: z.optional(z.string()),
 	}),
 ]);
 
@@ -12,14 +12,14 @@ const Funding = z.union([
 	z.string(),
 	z.object({
 		url: z.string(),
-		type: z.string().optional(),
+		type: z.optional(z.string()),
 	}),
 	z.array(
 		z.union([
 			z.string(),
 			z.object({
 				url: z.string(),
-				type: z.string().optional(),
+				type: z.optional(z.string()),
 			}),
 		]),
 	),
@@ -29,8 +29,8 @@ const Person = z.union([
 	z.string(),
 	z.object({
 		name: z.string(),
-		email: z.string().optional(),
-		url: z.string().optional(),
+		email: z.optional(z.string()),
+		url: z.optional(z.string()),
 	}),
 ]);
 
@@ -44,165 +44,167 @@ const Repository = z.union([
 		url: z.string(),
 
 		/** Directory in a monorepo where the package's source code is located. */
-		directory: z.string().optional(),
+		directory: z.optional(z.string()),
 	}),
 ]);
 
-export const PackageJson = z
-	.object({
-		/** Package name. */
-		name: z.string(),
+export const PackageJson = z.looseObject({
+	/** Package name. */
+	name: z.string(),
 
-		/** Package semver version number. */
-		version: z.string(),
+	/** Package semver version number. */
+	version: z.string(),
 
-		/** Description for the package. */
-		description: z.string().optional(),
+	/** Description for the package. */
+	description: z.optional(z.string()),
 
-		/** List of keywords for searching the package. */
-		keywords: z.array(z.string()).optional(),
+	/** List of keywords for searching the package. */
+	keywords: z.optional(z.array(z.string())),
 
-		/** URL of the package's homepage. */
-		homepage: z.string().optional(),
+	/** URL of the package's homepage. */
+	homepage: z.optional(z.string()),
 
-		/** Issue tracker for the package. */
-		bugs: Bugs.optional(),
+	/** Issue tracker for the package. */
+	bugs: z.optional(Bugs),
 
-		/** SPDX license expression or a custom license. */
-		license: z.string().optional(),
+	/** SPDX license expression or a custom license. */
+	license: z.optional(z.string()),
 
-		/** Author of the package. */
-		author: Person.optional(),
+	/** Author of the package. */
+	author: z.optional(Person),
 
-		/** Contributors to the package. */
-		contributors: z.array(Person).optional(),
+	/** Contributors to the package. */
+	contributors: z.optional(z.array(Person)),
 
-		/** Maintainers of the package. */
-		maintainers: z.array(Person).optional(),
+	/** Maintainers of the package. */
+	maintainers: z.optional(z.array(Person)),
 
-		/** Funding options for the package. */
-		funding: Funding.optional(),
+	/** Funding options for the package. */
+	funding: z.optional(Funding),
 
-		/** File patterns for files to be included when publishing the package. */
-		files: z.array(z.string()).optional(),
+	/** File patterns for files to be included when publishing the package. */
+	files: z.optional(z.array(z.string())),
 
-		/** Main entry point for the package, usually CommonJS. */
-		main: z.string().optional(),
+	/** Main entry point for the package, usually CommonJS. */
+	main: z.optional(z.string()),
 
-		/**
+	/**
 		Main entry point for the package when used in a browser environment.
 		@see {@link https://docs.npmjs.com/cli/v10/configuring-npm/package-json#browser}
 		@see {@link https://gist.github.com/defunctzombie/4339901/49493836fb873ddaa4b8a7aa0ef2352119f69211}
 		*/
-		browser: z.union([z.string(), z.record(z.union([z.string(), z.boolean()]))]).optional(),
+	browser: z.optional(
+		z.union([z.string(), z.record(z.string(), z.union([z.string(), z.boolean()]))]),
+	),
 
-		/** Executable files. */
-		bin: z.union([z.string(), z.record(z.string())]).optional(),
+	/** Executable files. */
+	bin: z.optional(z.union([z.string(), z.record(z.string(), z.string())])),
 
-		/** Documentation to be used with the `man` command. */
-		man: z.union([z.string(), z.array(z.string())]).optional(),
+	/** Documentation to be used with the `man` command. */
+	man: z.optional(z.union([z.string(), z.array(z.string())])),
 
-		/** Directories in the package. */
-		directories: z.record(z.string()).optional(),
+	/** Directories in the package. */
+	directories: z.optional(z.record(z.string(), z.string())),
 
-		/** Repository for the package's source code. */
-		repository: Repository.optional(),
+	/** Repository for the package's source code. */
+	repository: z.optional(Repository),
 
-		/** Scripts used in the package. */
-		scripts: z.record(z.string()).optional(),
+	/** Scripts used in the package. */
+	scripts: z.optional(z.record(z.string(), z.string())),
 
-		/** Configuration values for scripts. */
-		config: z.record(z.unknown()).optional(),
+	/** Configuration values for scripts. */
+	config: z.optional(z.record(z.string(), z.unknown())),
 
-		/** Production dependencies. */
-		dependencies: z.record(z.string()).optional(),
+	/** Production dependencies. */
+	dependencies: z.optional(z.record(z.string(), z.string())),
 
-		/** Development dependencies. */
-		devDependencies: z.record(z.string()).optional(),
+	/** Development dependencies. */
+	devDependencies: z.optional(z.record(z.string(), z.string())),
 
-		/** Peer dependencies. */
-		peerDependencies: z.record(z.string()).optional(),
+	/** Peer dependencies. */
+	peerDependencies: z.optional(z.record(z.string(), z.string())),
 
-		/** Metadata about peer dependencies. */
-		peerDependenciesMeta: z.record(z.object({ optional: z.boolean() })).optional(),
+	/** Metadata about peer dependencies. */
+	peerDependenciesMeta: z.optional(z.record(z.string(), z.object({ optional: z.boolean() }))),
 
-		/** Dependencies bundled with the package. */
-		bundleDependencies: z.union([z.boolean(), z.array(z.string())]).optional(),
+	/** Dependencies bundled with the package. */
+	bundleDependencies: z.optional(z.union([z.boolean(), z.array(z.string())])),
 
-		/** Dependencies bundled with the package (equivalent to `bundleDependencies`). */
-		bundledDependencies: z.union([z.boolean(), z.array(z.string())]).optional(),
+	/** Dependencies bundled with the package (equivalent to `bundleDependencies`). */
+	bundledDependencies: z.optional(z.union([z.boolean(), z.array(z.string())])),
 
-		/** Optional dependencies. */
-		optionalDependencies: z.record(z.string()).optional(),
+	/** Optional dependencies. */
+	optionalDependencies: z.optional(z.record(z.string(), z.string())),
 
-		/** Overrides for dependency resolution using npm. */
-		overrides: z.record(z.unknown()).optional(),
+	/** Overrides for dependency resolution using npm. */
+	overrides: z.optional(z.record(z.string(), z.unknown())),
 
-		/** Runtime systems supported by the package. */
-		engines: z.record(z.string()).optional(),
+	/** Runtime systems supported by the package. */
+	engines: z.optional(z.record(z.string(), z.string())),
 
-		/** Operating systems supported by the package. */
-		os: z.array(z.string()).optional(),
+	/** Operating systems supported by the package. */
+	os: z.optional(z.array(z.string())),
 
-		/** CPU architectures supported by the package. */
-		cpu: z.array(z.string()).optional(),
+	/** CPU architectures supported by the package. */
+	cpu: z.optional(z.array(z.string())),
 
-		/** True if the package should not be published. */
-		private: z.boolean().optional(),
+	/** True if the package should not be published. */
+	private: z.optional(z.boolean()),
 
-		/** Configuration values used at publishing time. */
-		publishConfig: z.record(z.unknown()).optional(),
+	/** Configuration values used at publishing time. */
+	publishConfig: z.optional(z.record(z.string(), z.unknown())),
 
-		/** File patterns for locating local workspaces. */
-		workspaces: z.array(z.string()).optional(),
+	/** File patterns for locating local workspaces. */
+	workspaces: z.optional(z.array(z.string())),
 
-		/** Deprecation message. */
-		deprecated: z.string().optional(),
+	/** Deprecation message. */
+	deprecated: z.optional(z.string()),
 
-		/** Main ESM entry point for the package. */
-		module: z.string().optional(),
+	/** Main ESM entry point for the package. */
+	module: z.optional(z.string()),
 
-		/** Type for all the `.js` files in the package, usually `module`. */
-		type: z.union([z.literal("module"), z.literal("commonjs")]).optional(),
+	/** Type for all the `.js` files in the package, usually `module`. */
+	type: z.optional(z.union([z.literal("module"), z.literal("commonjs")])),
 
-		/** Main TypeScript declaration file. */
-		types: z.string().optional(),
+	/** Main TypeScript declaration file. */
+	types: z.optional(z.string()),
 
-		/** Main TypeScript declaration file (equivalent to `types`). */
-		typings: z.string().optional(),
+	/** Main TypeScript declaration file (equivalent to `types`). */
+	typings: z.optional(z.string()),
 
-		/**
+	/**
 		TypeScript types resolutions.
   	@see {@link https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html#version-selection-with-typesversions}
   	*/
-		typesVersions: z.record(z.record(z.array(z.string()))).optional(),
+	typesVersions: z.optional(z.record(z.string(), z.record(z.string(), z.array(z.string())))),
 
-		/**
+	/**
   	Corepack package manager.
   	@see {@link https://nodejs.org/api/corepack.html}
   	*/
-		packageManager: z.string().optional(),
+	packageManager: z.optional(z.string()),
 
-		/**
+	/**
 		False if importing modules from the package does not cause side effects.
 		True or a list of file patterns if importing modules from the package causes side effects.
 		@see {@link https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free}
 		*/
-		sideEffects: z.union([z.boolean(), z.array(z.string())]).optional(),
+	sideEffects: z.optional(z.union([z.boolean(), z.array(z.string())])),
 
-		/**
+	/**
 		Imports map.
 		@see {@link https://nodejs.org/api/packages.html#imports}
 		*/
-		imports: z.record(z.unknown()).optional(),
+	imports: z.optional(z.record(z.string(), z.unknown())),
 
-		/**
+	/**
 		Package exports.
 		@see {@link https://nodejs.org/api/packages.html#exports}
 		*/
-		exports: z.union([z.null(), z.string(), z.array(z.string()), z.record(z.unknown())]).optional(),
-	})
-	.passthrough();
+	exports: z.optional(
+		z.union([z.null(), z.string(), z.array(z.string()), z.record(z.string(), z.unknown())]),
+	),
+});
 
 /**
 `PackageJson` describes the manifest for a package found in the `package.json` file.
