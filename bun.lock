@@ -4,16 +4,16 @@
     "": {
       "name": "zod-package-json",
       "dependencies": {
-        "zod": "^3.25.64",
+        "zod": "^4.0.13",
       },
       "devDependencies": {
         "@arethetypeswrong/cli": "^0.18.2",
-        "@vitest/coverage-v8": "^3.2.3",
+        "@vitest/coverage-v8": "^3.2.4",
         "np": "^10.2.0",
-        "prettier": "^3.5.3",
+        "prettier": "^3.6.2",
         "tsup": "^8.5.0",
         "typescript": "^5.8.3",
-        "vitest": "^3.2.3",
+        "vitest": "^3.2.4",
       },
     },
   },
@@ -830,7 +830,7 @@
 
     "yoctocolors-cjs": ["yoctocolors-cjs@2.1.2", "", {}, "sha512-cYVsTjKl8b+FrnidjibDWskAv7UKOfcwaVZdp/it9n1s9fU3IkgDbhdIRKCW4JDsAlECJY0ytoVPT3sK6kideA=="],
 
-    "zod": ["zod@3.25.67", "", {}, "sha512-idA2YXwpCdqUSKRCACDE6ItZD9TZzy3OZMtpfLoh6oPR47lipysRrJfjzMqFxQ3uJuUPyUeWe1r9vLH33xO/Qw=="],
+    "zod": ["zod@4.0.13", "", {}, "sha512-jv+zRxuZQxTrFHzxZ46ezL2FtnE+M4HIJHJEwLsZ7UjrXHltdG6HrxvqM0twoVCWxJiYf8WqKjAcjztegpkB+Q=="],
 
     "@arethetypeswrong/core/typescript": ["typescript@5.6.1-rc", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-E3b2+1zEFu84jB0YQi9BORDjz9+jGbwwy1Zi3G0LUNw7a7cePUrHMRNy8aPh53nXpkFGVHSxIZo5vKTfYaFiBQ=="],
 
