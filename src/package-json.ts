@@ -1,4 +1,4 @@
-import * as z from "zod/mini";
+import * as z from "zod";
 
 const Bugs = z.union([
 	z.string(),
