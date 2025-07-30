@@ -4,7 +4,7 @@
     "": {
       "name": "zod-package-json",
       "dependencies": {
-        "zod": "^4.0.13",
+        "zod": "^4.0.14",
       },
       "devDependencies": {
         "@arethetypeswrong/cli": "^0.18.2",
@@ -13,7 +13,7 @@
         "prettier": "^3.6.2",
         "typescript": "^5.8.3",
         "vitest": "^3.2.4",
-        "zshy": "^0.3.3",
+        "zshy": "^0.3.4",
       },
     },
   },
@@ -798,9 +798,9 @@
 
     "yoctocolors-cjs": ["yoctocolors-cjs@2.1.2", "", {}, "sha512-cYVsTjKl8b+FrnidjibDWskAv7UKOfcwaVZdp/it9n1s9fU3IkgDbhdIRKCW4JDsAlECJY0ytoVPT3sK6kideA=="],
 
-    "zod": ["zod@4.0.13", "", {}, "sha512-jv+zRxuZQxTrFHzxZ46ezL2FtnE+M4HIJHJEwLsZ7UjrXHltdG6HrxvqM0twoVCWxJiYf8WqKjAcjztegpkB+Q=="],
+    "zod": ["zod@4.0.14", "", {}, "sha512-nGFJTnJN6cM2v9kXL+SOBq3AtjQby3Mv5ySGFof5UGRHrRioSJ5iG680cYNjE/yWk671nROcpPj4hAS8nyLhSw=="],
 
-    "zshy": ["zshy@0.3.3", "", { "dependencies": { "arg": "^5.0.2", "globby": "^14.1.0", "table": "^6.9.0" }, "peerDependencies": { "typescript": ">5.5.0" }, "bin": { "zshy": "dist/index.cjs" } }, "sha512-LCU9i+a2oj0j7orROaOrpVZ6Mqt8VBvfX3GQSE5LsmLi/GK4SSdbkQEORz3Nd7NIStDlgGGbhM7tnCOSju8AoQ=="],
+    "zshy": ["zshy@0.3.4", "", { "dependencies": { "arg": "^5.0.2", "globby": "^14.1.0", "table": "^6.9.0" }, "peerDependencies": { "typescript": ">5.5.0" }, "bin": { "zshy": "dist/index.cjs" } }, "sha512-02BelC+sJsUjc3OOgqXoALaxBiNhZpwsGr2LHl3zGtg8w8VKrF5zHQR10as5hRQ02bqntv3AjBK+Um2L0QUTbw=="],
 
     "@arethetypeswrong/core/typescript": ["typescript@5.6.1-rc", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-E3b2+1zEFu84jB0YQi9BORDjz9+jGbwwy1Zi3G0LUNw7a7cePUrHMRNy8aPh53nXpkFGVHSxIZo5vKTfYaFiBQ=="],
 

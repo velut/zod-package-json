@@ -63,7 +63,7 @@
 		"release": "np --no-cleanup"
 	},
 	"dependencies": {
-		"zod": "^4.0.13"
+		"zod": "^4.0.14"
 	},
 	"devDependencies": {
 		"@arethetypeswrong/cli": "^0.18.2",
@@ -72,6 +72,6 @@
 		"prettier": "^3.6.2",
 		"typescript": "^5.8.3",
 		"vitest": "^3.2.4",
-		"zshy": "^0.3.3"
+		"zshy": "^0.3.4"
 	}
 }
