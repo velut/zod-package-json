@@ -27,7 +27,8 @@
 	"zshy": {
 		"exports": {
 			"./package.json": "./package.json",
-			".": "./src/index.ts"
+			".": "./src/index.ts",
+			"./mini": "./src/mini/index.ts"
 		},
 		"cjs": false
 	},
@@ -38,6 +39,10 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"import": "./dist/index.js"
+		},
+		"./mini": {
+			"types": "./dist/mini/index.d.ts",
+			"import": "./dist/mini/index.js"
 		}
 	},
 	"files": [
@@ -49,7 +54,7 @@
 	"scripts": {
 		"check": "tsc --noEmit",
 		"build": "tsc --noEmit && zshy",
-		"attw": "attw --pack . --ignore-rules cjs-resolves-to-esm",
+		"attw": "attw --pack . --profile esm-only",
 		"test": "vitest",
 		"test:ci": "vitest run --coverage --bail 1",
 		"lint": "prettier --check .",
