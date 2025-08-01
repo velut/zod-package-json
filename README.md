@@ -7,21 +7,21 @@
 [![npm](https://img.shields.io/npm/v/zod-package-json)](https://www.npmjs.com/package/zod-package-json)
 [![License](https://img.shields.io/github/license/velut/zod-package-json)](https://github.com/velut/zod-package-json/blob/main/LICENSE)
 
-[Zod](https://www.npmjs.com/package/zod) schema for the [`package.json`](https://docs.npmjs.com/cli/v10/configuring-npm/package-json/) file format.
+[Zod 4](https://zod.dev/) schema for the [`package.json`](https://docs.npmjs.com/cli/v11/configuring-npm/package-json) file format.
 
-This package exports a zod schema (and a TypeScript type) named `PackageJson`
+This package exports a [Zod](https://zod.dev/packages/zod) and a [Zod mini](https://zod.dev/packages/mini) schema (and the inferred TypeScript type) named `PackageJson`
 that can parse most well-formed `package.json` files.
 
 The schema includes all currently supported properties listed in the
-[npm docs](https://docs.npmjs.com/cli/v10/configuring-npm/package-json/)
+[npm docs](https://docs.npmjs.com/cli/v11/configuring-npm/package-json)
 as well as additional well-known properties specific to TypeScript and Node.js.
 
 The schema also preserves unknown properties, which can be accessed
 by indexing the parsed data with the desired string keys.
 
-The schema only validates the listed properties against the expected type
+The schema only validates the known properties against their expected type
 but does not do any additional normalization such as merging similar properties.
-If necessary, that can be done by extending the schema with zod methods such as
+If necessary, that can be done by extending the schema with Zod methods such as
 `.transform()` or `.refine()`.
 
 ## Useful resources
@@ -59,8 +59,29 @@ bun add zod-package-json
 
 ## Usage examples
 
+To use the classic Zod schema:
+
 ```typescript
 import { PackageJson } from "zod-package-json";
+
+// Parse data from a `package.json` file.
+const packageJson = PackageJson.parse({
+	name: "foo",
+	version: "1.0.0",
+	unknownProp: "who knows",
+});
+
+// Access a known property.
+packageJson.name; // "foo"
+
+// Access an unknown property.
+packageJson["unknownProp"]; // "who knows"
+```
+
+To use the [Zod mini](https://zod.dev/packages/mini) schema:
+
+```typescript
+import { PackageJson } from "zod-package-json/mini";
 
 // Parse data from a `package.json` file.
 const packageJson = PackageJson.parse({
