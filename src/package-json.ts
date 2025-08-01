@@ -148,6 +148,9 @@ export const PackageJson = z.looseObject({
 	/** CPU architectures supported by the package. */
 	cpu: z.optional(z.array(z.string())),
 
+	/** Version of libc required to build or run this package on Linux. */
+	libc: z.optional(z.string()),
+
 	/** True if the package should not be published. */
 	private: z.optional(z.boolean()),
 

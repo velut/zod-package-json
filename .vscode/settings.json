@@ -5,6 +5,7 @@
 		"codecov",
 		"corepack",
 		"edoardo",
+		"libc",
 		"scibona",
 		"tsup",
 		"velut",
