@@ -85,6 +85,14 @@ export const PackageJson = z.looseObject({
 	/** File patterns for files to be included when publishing the package. */
 	files: z.optional(z.array(z.string())),
 
+	/** Package exports. @see {@link https://nodejs.org/api/packages.html#exports} */
+	exports: z.optional(
+		z.union([z.null(), z.string(), z.array(z.string()), z.record(z.string(), z.unknown())]),
+	),
+
+	/** Type for all the `.js` files in the package, usually `module`. */
+	type: z.optional(z.union([z.literal("module"), z.literal("commonjs")])),
+
 	/** Main entry point for the package, usually CommonJS. */
 	main: z.optional(z.string()),
 
@@ -166,9 +174,6 @@ export const PackageJson = z.looseObject({
 	/** Main ESM entry point for the package. */
 	module: z.optional(z.string()),
 
-	/** Type for all the `.js` files in the package, usually `module`. */
-	type: z.optional(z.union([z.literal("module"), z.literal("commonjs")])),
-
 	/** Main TypeScript declaration file. */
 	types: z.optional(z.string()),
 
@@ -199,14 +204,6 @@ export const PackageJson = z.looseObject({
 		@see {@link https://nodejs.org/api/packages.html#imports}
 		*/
 	imports: z.optional(z.record(z.string(), z.unknown())),
-
-	/**
-		Package exports.
-		@see {@link https://nodejs.org/api/packages.html#exports}
-		*/
-	exports: z.optional(
-		z.union([z.null(), z.string(), z.array(z.string()), z.record(z.string(), z.unknown())]),
-	),
 });
 
 /**
