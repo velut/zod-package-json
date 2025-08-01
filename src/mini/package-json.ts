@@ -48,6 +48,22 @@ const Repository = z.union([
 	}),
 ]);
 
+const DevEngineDependency = z.object({
+	name: z.string(),
+	version: z.optional(z.string()),
+	onFail: z.optional(z.literal(["ignore", "warn", "error"])),
+});
+
+const DevEngineDependencies = z.union([DevEngineDependency, z.array(DevEngineDependency)]);
+
+const DevEngines = z.object({
+	cpu: z.optional(DevEngineDependencies),
+	os: z.optional(DevEngineDependencies),
+	libc: z.optional(DevEngineDependencies),
+	runtime: z.optional(DevEngineDependencies),
+	packageManager: z.optional(DevEngineDependencies),
+});
+
 export const PackageJson = z.looseObject({
 	/** Package name. */
 	name: z.string(),
@@ -158,6 +174,9 @@ export const PackageJson = z.looseObject({
 
 	/** Version of libc required to build or run this package on Linux. */
 	libc: z.optional(z.string()),
+
+	/** Tooling required to develop the package. */
+	devEngines: z.optional(DevEngines),
 
 	/** True if the package should not be published. */
 	private: z.optional(z.boolean()),
