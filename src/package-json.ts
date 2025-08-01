@@ -113,10 +113,10 @@ export const PackageJson = z.looseObject({
 	main: z.optional(z.string()),
 
 	/**
-		Main entry point for the package when used in a browser environment.
-		@see {@link https://docs.npmjs.com/cli/v10/configuring-npm/package-json#browser}
-		@see {@link https://gist.github.com/defunctzombie/4339901/49493836fb873ddaa4b8a7aa0ef2352119f69211}
-		*/
+	Main entry point for the package when used in a browser environment.
+	@see {@link https://docs.npmjs.com/cli/v10/configuring-npm/package-json#browser}
+	@see {@link https://gist.github.com/defunctzombie/4339901/49493836fb873ddaa4b8a7aa0ef2352119f69211}
+	*/
 	browser: z.optional(
 		z.union([z.string(), z.record(z.string(), z.union([z.string(), z.boolean()]))]),
 	),
@@ -200,28 +200,28 @@ export const PackageJson = z.looseObject({
 	typings: z.optional(z.string()),
 
 	/**
-		TypeScript types resolutions.
-  	@see {@link https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html#version-selection-with-typesversions}
-  	*/
+	TypeScript types resolutions.
+  @see {@link https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html#version-selection-with-typesversions}
+  */
 	typesVersions: z.optional(z.record(z.string(), z.record(z.string(), z.array(z.string())))),
 
 	/**
-  	Corepack package manager.
-  	@see {@link https://nodejs.org/api/corepack.html}
-  	*/
+  Corepack package manager.
+  @see {@link https://nodejs.org/api/corepack.html}
+  */
 	packageManager: z.optional(z.string()),
 
 	/**
-		False if importing modules from the package does not cause side effects.
-		True or a list of file patterns if importing modules from the package causes side effects.
-		@see {@link https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free}
-		*/
+	False if importing modules from the package does not cause side effects.
+	True or a list of file patterns if importing modules from the package causes side effects.
+	@see {@link https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free}
+	*/
 	sideEffects: z.optional(z.union([z.boolean(), z.array(z.string())])),
 
 	/**
-		Imports map.
-		@see {@link https://nodejs.org/api/packages.html#imports}
-		*/
+	Imports map.
+	@see {@link https://nodejs.org/api/packages.html#imports}
+	*/
 	imports: z.optional(z.record(z.string(), z.unknown())),
 });
 
