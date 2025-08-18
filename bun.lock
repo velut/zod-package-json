@@ -4,16 +4,16 @@
     "": {
       "name": "zod-package-json",
       "dependencies": {
-        "zod": "^4.0.14",
+        "zod": "latest",
       },
       "devDependencies": {
-        "@arethetypeswrong/cli": "^0.18.2",
-        "@vitest/coverage-v8": "^3.2.4",
-        "np": "^10.2.0",
-        "prettier": "^3.6.2",
-        "typescript": "^5.9.2",
-        "vitest": "^3.2.4",
-        "zshy": "^0.3.4",
+        "@arethetypeswrong/cli": "latest",
+        "@vitest/coverage-v8": "latest",
+        "np": "latest",
+        "prettier": "latest",
+        "typescript": "latest",
+        "vitest": "latest",
+        "zshy": "latest",
       },
     },
   },
@@ -798,9 +798,9 @@
 
     "yoctocolors-cjs": ["yoctocolors-cjs@2.1.2", "", {}, "sha512-cYVsTjKl8b+FrnidjibDWskAv7UKOfcwaVZdp/it9n1s9fU3IkgDbhdIRKCW4JDsAlECJY0ytoVPT3sK6kideA=="],
 
-    "zod": ["zod@4.0.14", "", {}, "sha512-nGFJTnJN6cM2v9kXL+SOBq3AtjQby3Mv5ySGFof5UGRHrRioSJ5iG680cYNjE/yWk671nROcpPj4hAS8nyLhSw=="],
+    "zod": ["zod@4.0.17", "", {}, "sha512-1PHjlYRevNxxdy2JZ8JcNAw7rX8V9P1AKkP+x/xZfxB0K5FYfuV+Ug6P/6NVSR2jHQ+FzDDoDHS04nYUsOIyLQ=="],
 
-    "zshy": ["zshy@0.3.4", "", { "dependencies": { "arg": "^5.0.2", "globby": "^14.1.0", "table": "^6.9.0" }, "peerDependencies": { "typescript": ">5.5.0" }, "bin": { "zshy": "dist/index.cjs" } }, "sha512-02BelC+sJsUjc3OOgqXoALaxBiNhZpwsGr2LHl3zGtg8w8VKrF5zHQR10as5hRQ02bqntv3AjBK+Um2L0QUTbw=="],
+    "zshy": ["zshy@0.3.5", "", { "dependencies": { "arg": "^5.0.2", "globby": "^14.1.0", "table": "^6.9.0" }, "peerDependencies": { "typescript": ">5.5.0" }, "bin": { "zshy": "dist/index.cjs" } }, "sha512-snxs1iCIgLHY+eavk06UD54bTioXbXHzZ0XnsrDNjrztG7qrhagL6VyJ/jdBODZ0sCn+ZdqgXLwYLxZLydYdTA=="],
 
     "@arethetypeswrong/core/typescript": ["typescript@5.6.1-rc", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-E3b2+1zEFu84jB0YQi9BORDjz9+jGbwwy1Zi3G0LUNw7a7cePUrHMRNy8aPh53nXpkFGVHSxIZo5vKTfYaFiBQ=="],
 
