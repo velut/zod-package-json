@@ -33,28 +33,31 @@ If necessary, that can be done by extending the schema with Zod methods such as
 
 ## Install
 
+> [!NOTE]  
+> Make sure you have Zod v4 installed in your application to use this package.
+
 Using `npm`:
 
 ```
-npm add zod-package-json
+npm add zod zod-package-json
 ```
 
 Using `yarn`:
 
 ```
-yarn add zod-package-json
+yarn add zod zod-package-json
 ```
 
 Using `pnpm`:
 
 ```
-pnpm add zod-package-json
+pnpm add zod zod-package-json
 ```
 
 Using `bun`:
 
 ```
-bun add zod-package-json
+bun add zod zod-package-json
 ```
 
 ## Usage examples
