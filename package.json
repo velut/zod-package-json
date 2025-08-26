@@ -62,8 +62,8 @@
 		"pre-push": "bun install && bun run lint && bun run build && bun run test:ci && bun run attw",
 		"release": "np --no-cleanup"
 	},
-	"dependencies": {
-		"zod": "^4.0.17"
+	"peerDependencies": {
+		"zod": "^4.0.0"
 	},
 	"devDependencies": {
 		"@arethetypeswrong/cli": "^0.18.2",
