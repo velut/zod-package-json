@@ -38,11 +38,11 @@
 		"./package.json": "./package.json",
 		".": {
 			"types": "./dist/index.d.ts",
-			"import": "./dist/index.js"
+			"default": "./dist/index.js"
 		},
 		"./mini": {
 			"types": "./dist/mini/index.d.ts",
-			"import": "./dist/mini/index.js"
+			"default": "./dist/mini/index.js"
 		}
 	},
 	"files": [
