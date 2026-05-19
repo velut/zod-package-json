@@ -53,12 +53,12 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
-    "@vitest/coverage-v8": "^4.0.6",
-    "np": "^11.0.2",
+    "@vitest/coverage-v8": "^4.1.6",
+    "np": "^11.2.1",
     "oxfmt": "^0.51.0",
     "typescript": "^6.0.2",
-    "vitest": "^4.0.6",
-    "zshy": "^0.7.0"
+    "vitest": "^4.1.6",
+    "zshy": "^0.7.2"
   },
   "peerDependencies": {
     "zod": "^4.0.0"
