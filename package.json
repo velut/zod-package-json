@@ -1,77 +1,77 @@
 {
-	"name": "zod-package-json",
-	"version": "2.1.0",
-	"description": "Zod schema for the package.json file format",
-	"license": "MIT",
-	"author": {
-		"name": "Edoardo Scibona",
-		"url": "https://github.com/velut"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/velut/zod-package-json.git"
-	},
-	"bugs": {
-		"url": "https://github.com/velut/zod-package-json/issues"
-	},
-	"keywords": [
-		"zod",
-		"schema",
-		"package",
-		"json",
-		"typescript",
-		"npm"
-	],
-	"sideEffects": false,
-	"type": "module",
-	"zshy": {
-		"exports": {
-			"./package.json": "./package.json",
-			".": "./src/index.ts",
-			"./mini": "./src/mini/index.ts"
-		},
-		"cjs": false
-	},
-	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"exports": {
-		"./package.json": "./package.json",
-		".": {
-			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
-		},
-		"./mini": {
-			"types": "./dist/mini/index.d.ts",
-			"default": "./dist/mini/index.js"
-		}
-	},
-	"files": [
-		"dist"
-	],
-	"engines": {
-		"node": ">=20"
-	},
-	"scripts": {
-		"check": "tsc --noEmit",
-		"build": "tsc --noEmit && zshy",
-		"attw": "attw --pack . --profile esm-only",
-		"test": "vitest",
-		"test:ci": "vitest run --coverage --bail 1",
-		"lint": "oxfmt --check",
-		"format": "oxfmt",
-		"pre-push": "bun install && bun run lint && bun run build && bun run test:ci && bun run attw",
-		"release": "np --no-cleanup"
-	},
-	"peerDependencies": {
-		"zod": "^4.0.0"
-	},
-	"devDependencies": {
-		"@arethetypeswrong/cli": "^0.18.2",
-		"@vitest/coverage-v8": "^4.0.6",
-		"np": "^11.0.2",
-		"oxfmt": "^0.51.0",
-		"typescript": "^6.0.2",
-		"vitest": "^4.0.6",
-		"zshy": "^0.7.0"
-	}
+  "name": "zod-package-json",
+  "version": "2.1.0",
+  "description": "Zod schema for the package.json file format",
+  "keywords": [
+    "json",
+    "npm",
+    "package",
+    "schema",
+    "typescript",
+    "zod"
+  ],
+  "bugs": {
+    "url": "https://github.com/velut/zod-package-json/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Edoardo Scibona",
+    "url": "https://github.com/velut"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/velut/zod-package-json.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./mini": {
+      "types": "./dist/mini/index.d.ts",
+      "default": "./dist/mini/index.js"
+    }
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "build": "tsc --noEmit && zshy",
+    "attw": "attw --pack . --profile esm-only",
+    "test": "vitest",
+    "test:ci": "vitest run --coverage --bail 1",
+    "lint": "oxfmt --check",
+    "format": "oxfmt",
+    "pre-push": "bun install && bun run lint && bun run build && bun run test:ci && bun run attw",
+    "release": "np --no-cleanup"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
+    "@vitest/coverage-v8": "^4.0.6",
+    "np": "^11.0.2",
+    "oxfmt": "^0.51.0",
+    "typescript": "^6.0.2",
+    "vitest": "^4.0.6",
+    "zshy": "^0.7.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "zshy": {
+    "exports": {
+      "./package.json": "./package.json",
+      ".": "./src/index.ts",
+      "./mini": "./src/mini/index.ts"
+    },
+    "cjs": false
+  }
 }

@@ -1,15 +1,15 @@
 {
-	"cSpell.ignoreWords": [
-		"arethetypeswrong",
-		"attw",
-		"codecov",
-		"corepack",
-		"edoardo",
-		"libc",
-		"scibona",
-		"tsup",
-		"velut",
-		"vitest",
-		"zshy"
-	]
+  "cSpell.ignoreWords": [
+    "arethetypeswrong",
+    "attw",
+    "codecov",
+    "corepack",
+    "edoardo",
+    "libc",
+    "scibona",
+    "tsup",
+    "velut",
+    "vitest",
+    "zshy"
+  ]
 }

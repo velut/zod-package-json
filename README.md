@@ -69,9 +69,9 @@ import { PackageJson } from "zod-package-json";
 
 // Parse data from a `package.json` file.
 const packageJson = PackageJson.parse({
-	name: "foo",
-	version: "1.0.0",
-	unknownProp: "who knows",
+  name: "foo",
+  version: "1.0.0",
+  unknownProp: "who knows",
 });
 
 // Access a known property.
@@ -88,9 +88,9 @@ import { PackageJson } from "zod-package-json/mini";
 
 // Parse data from a `package.json` file.
 const packageJson = PackageJson.parse({
-	name: "foo",
-	version: "1.0.0",
-	unknownProp: "who knows",
+  name: "foo",
+  version: "1.0.0",
+  unknownProp: "who knows",
 });
 
 // Access a known property.

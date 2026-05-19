@@ -2,20 +2,20 @@ import { expect, test } from "vitest";
 import { PackageJson } from "./package-json";
 
 test("not an object", () => {
-	expect(() => PackageJson.parse("foo")).toThrow();
+  expect(() => PackageJson.parse("foo")).toThrow();
 });
 
 test("missing required properties", () => {
-	expect(() => PackageJson.parse({})).toThrow();
+  expect(() => PackageJson.parse({})).toThrow();
 });
 
 test("only required properties", () => {
-	expect(
-		PackageJson.parse({
-			name: "foo",
-			version: "1.0.0",
-		}),
-	).toMatchInlineSnapshot(`
+  expect(
+    PackageJson.parse({
+      name: "foo",
+      version: "1.0.0",
+    }),
+  ).toMatchInlineSnapshot(`
 		{
 		  "name": "foo",
 		  "version": "1.0.0",
@@ -24,13 +24,13 @@ test("only required properties", () => {
 });
 
 test("unknown property", () => {
-	expect(
-		PackageJson.parse({
-			name: "foo",
-			version: "1.0.0",
-			unknownProp: "who knows",
-		}),
-	).toMatchInlineSnapshot(`
+  expect(
+    PackageJson.parse({
+      name: "foo",
+      version: "1.0.0",
+      unknownProp: "who knows",
+    }),
+  ).toMatchInlineSnapshot(`
 		{
 		  "name": "foo",
 		  "unknownProp": "who knows",
@@ -40,16 +40,16 @@ test("unknown property", () => {
 });
 
 test("doc comment", () => {
-	// Parse data from a `package.json` file.
-	const packageJson = PackageJson.parse({
-		name: "foo",
-		version: "1.0.0",
-		unknownProp: "who knows",
-	});
+  // Parse data from a `package.json` file.
+  const packageJson = PackageJson.parse({
+    name: "foo",
+    version: "1.0.0",
+    unknownProp: "who knows",
+  });
 
-	// Access a known property
-	expect(packageJson.name).toBe("foo");
+  // Access a known property
+  expect(packageJson.name).toBe("foo");
 
-	// Access an unknown property
-	expect(packageJson["unknownProp"]).toBe("who knows");
+  // Access an unknown property
+  expect(packageJson["unknownProp"]).toBe("who knows");
 });
