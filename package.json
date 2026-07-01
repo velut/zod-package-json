@@ -55,7 +55,7 @@
     "@arethetypeswrong/cli": "^0.18.2",
     "@vitest/coverage-v8": "^4.1.6",
     "np": "^11.2.1",
-    "oxfmt": "^0.53.0",
+    "oxfmt": "^0.57.0",
     "typescript": "^6.0.2",
     "vitest": "^4.1.6",
     "zshy": "^0.7.2"
