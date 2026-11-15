@@ -97,6 +97,16 @@ const BundleDependencies = z.union([z.boolean(), z.array(z.string())]);
 
 const Overrides = z.record(z.string(), z.unknown());
 
+const PackageExtensions = z.record(
+  z.string(),
+  z.object({
+    dependencies: z.optional(Dependencies),
+    optionalDependencies: z.optional(Dependencies),
+    peerDependencies: z.optional(Dependencies),
+    peerDependenciesMeta: z.optional(PeerDependenciesMeta),
+  }),
+);
+
 const DevEngineDependency = z.object({
   name: z.string(),
   version: z.optional(z.string()),
@@ -222,17 +232,7 @@ export const PackageJson = z.looseObject({
   Available only in private packages and unpublished packages.
   @see {@link https://docs.npmjs.com/cli/v12/configuring-npm/package-json#packageextensions}
   */
-  packageExtensions: z.optional(
-    z.record(
-      z.string(),
-      z.object({
-        dependencies: z.optional(z.record(z.string(), z.string())),
-        optionalDependencies: z.optional(z.record(z.string(), z.string())),
-        peerDependencies: z.optional(z.record(z.string(), z.string())),
-        peerDependenciesMeta: z.optional(z.record(z.string(), z.object({ optional: z.boolean() }))),
-      }),
-    ),
-  ),
+  packageExtensions: z.optional(PackageExtensions),
 
   /** Runtime systems supported by the package. */
   engines: z.optional(z.record(z.string(), z.string())),
