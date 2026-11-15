@@ -131,6 +131,8 @@ const DevEngines = z.object({
   packageManager: z.optional(DevEngineDependencies),
 });
 
+const Private = z.boolean();
+
 export const PackageJson = z.looseObject({
   /** Package name. */
   name: Name,
@@ -258,7 +260,7 @@ export const PackageJson = z.looseObject({
   devEngines: z.optional(DevEngines),
 
   /** True if the package should not be published. */
-  private: z.optional(z.boolean()),
+  private: z.optional(Private),
 
   /** Configuration values used at publishing time. */
   publishConfig: z.optional(z.record(z.string(), z.unknown())),
