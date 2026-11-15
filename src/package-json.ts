@@ -133,6 +133,8 @@ const DevEngines = z.object({
 
 const Private = z.boolean();
 
+const PublishConfig = z.record(z.string(), z.unknown());
+
 export const PackageJson = z.looseObject({
   /** Package name. */
   name: Name,
@@ -263,7 +265,7 @@ export const PackageJson = z.looseObject({
   private: z.optional(Private),
 
   /** Configuration values used at publishing time. */
-  publishConfig: z.optional(z.record(z.string(), z.unknown())),
+  publishConfig: z.optional(PublishConfig),
 
   /** File patterns for locating local workspaces. */
   workspaces: z.optional(z.array(z.string())),
