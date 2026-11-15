@@ -89,6 +89,8 @@ const Gypfile = z.boolean();
 
 const Config = z.record(z.string(), z.unknown());
 
+const Dependencies = z.record(z.string(), z.string());
+
 const DevEngineDependency = z.object({
   name: z.string(),
   version: z.optional(z.string()),
@@ -186,13 +188,13 @@ export const PackageJson = z.looseObject({
   config: z.optional(Config),
 
   /** Production dependencies. */
-  dependencies: z.optional(z.record(z.string(), z.string())),
+  dependencies: z.optional(Dependencies),
 
   /** Development dependencies. */
-  devDependencies: z.optional(z.record(z.string(), z.string())),
+  devDependencies: z.optional(Dependencies),
 
   /** Peer dependencies. */
-  peerDependencies: z.optional(z.record(z.string(), z.string())),
+  peerDependencies: z.optional(Dependencies),
 
   /** Metadata about peer dependencies. */
   peerDependenciesMeta: z.optional(z.record(z.string(), z.object({ optional: z.boolean() }))),
@@ -204,7 +206,7 @@ export const PackageJson = z.looseObject({
   bundledDependencies: z.optional(z.union([z.boolean(), z.array(z.string())])),
 
   /** Optional dependencies. */
-  optionalDependencies: z.optional(z.record(z.string(), z.string())),
+  optionalDependencies: z.optional(Dependencies),
 
   /** Overrides for dependency resolution using npm. */
   overrides: z.optional(z.record(z.string(), z.unknown())),
