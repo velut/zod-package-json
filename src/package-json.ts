@@ -29,6 +29,8 @@ const Person = z.union([
   }),
 ]);
 
+const People = z.array(Person);
+
 const Funding = z.union([
   z.string(),
   z.object({
@@ -102,10 +104,10 @@ export const PackageJson = z.looseObject({
   author: z.optional(Person),
 
   /** Contributors to the package. */
-  contributors: z.optional(z.array(Person)),
+  contributors: z.optional(People),
 
   /** Maintainers of the package. */
-  maintainers: z.optional(z.array(Person)),
+  maintainers: z.optional(People),
 
   /** Funding options for the package. */
   funding: z.optional(Funding),
