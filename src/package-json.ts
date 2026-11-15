@@ -135,6 +135,14 @@ const Private = z.boolean();
 
 const PublishConfig = z.record(z.string(), z.unknown());
 
+const Workspaces = z.array(z.string());
+
+const Deprecated = z.string();
+
+const Module = z.string();
+
+const Types = z.string();
+
 export const PackageJson = z.looseObject({
   /** Package name. */
   name: Name,
@@ -268,19 +276,19 @@ export const PackageJson = z.looseObject({
   publishConfig: z.optional(PublishConfig),
 
   /** File patterns for locating local workspaces. */
-  workspaces: z.optional(z.array(z.string())),
+  workspaces: z.optional(Workspaces),
 
   /** Deprecation message. */
-  deprecated: z.optional(z.string()),
+  deprecated: z.optional(Deprecated),
 
   /** Main ESM entry point for the package. */
-  module: z.optional(z.string()),
+  module: z.optional(Module),
 
   /** Main TypeScript declaration file. */
-  types: z.optional(z.string()),
+  types: z.optional(Types),
 
   /** Main TypeScript declaration file (equivalent to `types`). */
-  typings: z.optional(z.string()),
+  typings: z.optional(Types),
 
   /**
 	TypeScript types resolutions.
