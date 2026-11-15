@@ -169,6 +169,23 @@ export const PackageJson = z.looseObject({
   /** Overrides for dependency resolution using npm. */
   overrides: z.optional(z.record(z.string(), z.unknown())),
 
+  /**
+  Overrides to let npm repair the manifests of third-party packages.
+  Available only in private packages and unpublished packages.
+  @see {@link https://docs.npmjs.com/cli/v12/configuring-npm/package-json#packageextensions}
+  */
+  packageExtensions: z.optional(
+    z.record(
+      z.string(),
+      z.object({
+        dependencies: z.optional(z.record(z.string(), z.string())),
+        optionalDependencies: z.optional(z.record(z.string(), z.string())),
+        peerDependencies: z.optional(z.record(z.string(), z.string())),
+        peerDependenciesMeta: z.optional(z.record(z.string(), z.object({ optional: z.boolean() }))),
+      }),
+    ),
+  ),
+
   /** Runtime systems supported by the package. */
   engines: z.optional(z.record(z.string(), z.string())),
 
