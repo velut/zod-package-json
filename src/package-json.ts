@@ -67,6 +67,8 @@ const Bin = z.union([z.string(), z.record(z.string(), z.string())]);
 
 const Man = z.union([z.string(), z.array(z.string())]);
 
+const Directories = z.record(z.string(), z.string());
+
 const Repository = z.union([
   z.string(),
   z.object({
@@ -160,7 +162,7 @@ export const PackageJson = z.looseObject({
   man: z.optional(Man),
 
   /** Directories in the package. */
-  directories: z.optional(z.record(z.string(), z.string())),
+  directories: z.optional(Directories),
 
   /** Repository for the package's source code. */
   repository: z.optional(Repository),
