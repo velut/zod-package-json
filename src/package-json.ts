@@ -65,6 +65,8 @@ const Browser = z.union([z.string(), z.record(z.string(), z.union([z.string(), z
 
 const Bin = z.union([z.string(), z.record(z.string(), z.string())]);
 
+const Man = z.union([z.string(), z.array(z.string())]);
+
 const Repository = z.union([
   z.string(),
   z.object({
@@ -155,7 +157,7 @@ export const PackageJson = z.looseObject({
   bin: z.optional(Bin),
 
   /** Documentation to be used with the `man` command. */
-  man: z.optional(z.union([z.string(), z.array(z.string())])),
+  man: z.optional(Man),
 
   /** Directories in the package. */
   directories: z.optional(z.record(z.string(), z.string())),
