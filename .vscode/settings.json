@@ -5,6 +5,7 @@
     "codecov",
     "corepack",
     "edoardo",
+    "gypfile",
     "libc",
     "scibona",
     "tsup",

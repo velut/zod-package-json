@@ -85,6 +85,8 @@ const Repository = z.union([
 
 const Scripts = z.record(z.string(), z.string());
 
+const Gypfile = z.boolean();
+
 const DevEngineDependency = z.object({
   name: z.string(),
   version: z.optional(z.string()),
@@ -173,10 +175,10 @@ export const PackageJson = z.looseObject({
   scripts: z.optional(Scripts),
 
   /**
-  Prevent npm from building a module with node-gyp.
+  Prevent npm from building a module with node-gyp, usually `false`.
   @see {@link https://docs.npmjs.com/cli/v12/configuring-npm/package-json#gypfile}
   */
-  gypfile: z.optional(z.boolean()),
+  gypfile: z.optional(Gypfile),
 
   /** Configuration values for scripts. */
   config: z.optional(z.record(z.string(), z.unknown())),
