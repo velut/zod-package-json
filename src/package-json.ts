@@ -133,8 +133,6 @@ const DevEngines = z.object({
 
 const Private = z.boolean();
 
-const PublishConfig = z.record(z.string(), z.unknown());
-
 const Workspaces = z.array(z.string());
 
 const Deprecated = z.string();
@@ -150,6 +148,49 @@ const PackageManager = z.string();
 const SideEffects = z.union([z.boolean(), z.array(z.string())]);
 
 const Imports = z.record(z.string(), z.unknown());
+
+// Configuration read by package managers when publishing a package.
+// See:
+// https://github.com/velut/zod-package-json/issues/86
+// https://docs.npmjs.com/cli/v12/using-npm/config#config-settings
+// https://pnpm.io/package_json#publishconfig
+// https://bun.com/docs/pm/cli/publish
+// https://yarnpkg.com/configuration/manifest#publishConfig
+const PublishConfig = z.looseObject({
+  // Properties described in pnpm's docs.
+  registry: z.optional(z.string()),
+  access: z.optional(z.literal(["public", "restricted", "private"])),
+  name: z.optional(z.string()),
+  executableFiles: z.optional(z.array(z.string())),
+  directory: z.optional(z.string()),
+  linkDirectory: z.optional(z.boolean()),
+  variants: z.optional(
+    z.array(
+      z.object({
+        targets: z.optional(z.array(z.string())),
+        files: z.optional(z.array(z.string())),
+        manifest: z.optional(z.record(z.string(), z.unknown())),
+      }),
+    ),
+  ),
+
+  // Other known properties.
+  provenance: z.optional(z.boolean()),
+  tag: z.optional(z.string()),
+
+  // Other overridable properties with respect to the containing package.json manifest.
+  bin: z.optional(Bin),
+  browser: z.optional(Browser),
+  cpu: z.optional(Cpu),
+  engines: z.optional(Engines),
+  exports: z.optional(Exports),
+  main: z.optional(Main),
+  module: z.optional(Module),
+  os: z.optional(Os),
+  types: z.optional(Types),
+  typings: z.optional(Types),
+  typesVersions: z.optional(TypesVersions),
+});
 
 export const PackageJson = z.looseObject({
   /** Package name. */
@@ -280,9 +321,6 @@ export const PackageJson = z.looseObject({
   /** True if the package should not be published. */
   private: z.optional(Private),
 
-  /** Configuration values used at publishing time. */
-  publishConfig: z.optional(PublishConfig),
-
   /** File patterns for locating local workspaces. */
   workspaces: z.optional(Workspaces),
 
@@ -322,6 +360,15 @@ export const PackageJson = z.looseObject({
 	@see {@link https://nodejs.org/api/packages.html#imports}
 	*/
   imports: z.optional(Imports),
+
+  /**
+  Configuration read by package managers when publishing a package.
+  @see {@link https://docs.npmjs.com/cli/v12/using-npm/config#config-settings}
+  @see {@link https://pnpm.io/package_json#publishconfig}
+  @see {@link https://bun.com/docs/pm/cli/publish}
+  @see {@link https://yarnpkg.com/configuration/manifest#publishConfig}
+  */
+  publishConfig: z.optional(PublishConfig),
 });
 
 /**
