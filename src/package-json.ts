@@ -1,5 +1,7 @@
 import * as z from "zod";
 
+const Keywords = z.array(z.string());
+
 const Bugs = z.union([
   z.string(),
   z.object({
@@ -75,7 +77,7 @@ export const PackageJson = z.looseObject({
   description: z.optional(z.string()),
 
   /** List of keywords for searching the package. */
-  keywords: z.optional(z.array(z.string())),
+  keywords: z.optional(Keywords),
 
   /** URL of the package's homepage. */
   homepage: z.optional(z.string()),
