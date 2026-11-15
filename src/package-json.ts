@@ -1,6 +1,14 @@
 import * as z from "zod";
 
+const Name = z.string();
+
+const Version = z.string();
+
+const Description = z.string();
+
 const Keywords = z.array(z.string());
+
+const Homepage = z.string();
 
 const Bugs = z.union([
   z.string(),
@@ -9,6 +17,8 @@ const Bugs = z.union([
     email: z.optional(z.string()),
   }),
 ]);
+
+const License = z.string();
 
 const Funding = z.union([
   z.string(),
@@ -68,25 +78,25 @@ const DevEngines = z.object({
 
 export const PackageJson = z.looseObject({
   /** Package name. */
-  name: z.string(),
+  name: Name,
 
   /** Package semver version number. */
-  version: z.string(),
+  version: Version,
 
   /** Description for the package. */
-  description: z.optional(z.string()),
+  description: z.optional(Description),
 
   /** List of keywords for searching the package. */
   keywords: z.optional(Keywords),
 
   /** URL of the package's homepage. */
-  homepage: z.optional(z.string()),
+  homepage: z.optional(Homepage),
 
   /** Issue tracker for the package. */
   bugs: z.optional(Bugs),
 
   /** SPDX license expression or a custom license. */
-  license: z.optional(z.string()),
+  license: z.optional(License),
 
   /** Author of the package. */
   author: z.optional(Person),
