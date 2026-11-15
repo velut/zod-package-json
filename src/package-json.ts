@@ -83,6 +83,8 @@ const Repository = z.union([
   }),
 ]);
 
+const Scripts = z.record(z.string(), z.string());
+
 const DevEngineDependency = z.object({
   name: z.string(),
   version: z.optional(z.string()),
@@ -168,7 +170,7 @@ export const PackageJson = z.looseObject({
   repository: z.optional(Repository),
 
   /** Scripts used in the package. */
-  scripts: z.optional(z.record(z.string(), z.string())),
+  scripts: z.optional(Scripts),
 
   /**
   Prevent npm from building a module with node-gyp.
