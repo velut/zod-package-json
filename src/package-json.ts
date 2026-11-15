@@ -93,6 +93,8 @@ const Dependencies = z.record(z.string(), z.string());
 
 const PeerDependenciesMeta = z.record(z.string(), z.object({ optional: z.boolean() }));
 
+const BundleDependencies = z.union([z.boolean(), z.array(z.string())]);
+
 const DevEngineDependency = z.object({
   name: z.string(),
   version: z.optional(z.string()),
@@ -202,10 +204,10 @@ export const PackageJson = z.looseObject({
   peerDependenciesMeta: z.optional(PeerDependenciesMeta),
 
   /** Dependencies bundled with the package. */
-  bundleDependencies: z.optional(z.union([z.boolean(), z.array(z.string())])),
+  bundleDependencies: z.optional(BundleDependencies),
 
   /** Dependencies bundled with the package (equivalent to `bundleDependencies`). */
-  bundledDependencies: z.optional(z.union([z.boolean(), z.array(z.string())])),
+  bundledDependencies: z.optional(BundleDependencies),
 
   /** Optional dependencies. */
   optionalDependencies: z.optional(Dependencies),
