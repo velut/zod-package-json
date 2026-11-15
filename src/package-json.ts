@@ -202,7 +202,7 @@ export const PackageJson = z.looseObject({
 
   /**
 	Main entry point for the package when used in a browser environment.
-	@see {@link https://docs.npmjs.com/cli/v10/configuring-npm/package-json#browser}
+	@see {@link https://docs.npmjs.com/cli/v12/configuring-npm/package-json#browser}
 	@see {@link https://gist.github.com/defunctzombie/4339901/49493836fb873ddaa4b8a7aa0ef2352119f69211}
 	*/
   browser: z.optional(Browser),
@@ -326,6 +326,6 @@ export const PackageJson = z.looseObject({
 
 /**
 `PackageJson` describes the manifest for a package found in the `package.json` file.
-@see {@link https://docs.npmjs.com/cli/v10/configuring-npm/package-json}
+@see {@link https://docs.npmjs.com/cli/v12/configuring-npm/package-json}
 */
 export type PackageJson = z.infer<typeof PackageJson>;
