@@ -242,10 +242,10 @@ export const PackageJson = z.looseObject({
   type: z.optional(Type),
 
   /**
-	Main entry point for the package when used in a browser environment.
-	@see {@link https://docs.npmjs.com/cli/v12/configuring-npm/package-json#browser}
-	@see {@link https://gist.github.com/defunctzombie/4339901/49493836fb873ddaa4b8a7aa0ef2352119f69211}
-	*/
+  Main entry point for the package when used in a browser environment.
+  @see {@link https://docs.npmjs.com/cli/v12/configuring-npm/package-json#browser}
+  @see {@link https://gist.github.com/defunctzombie/4339901/49493836fb873ddaa4b8a7aa0ef2352119f69211}
+  */
   browser: z.optional(Browser),
 
   /** Executable files. */
@@ -337,7 +337,7 @@ export const PackageJson = z.looseObject({
   typings: z.optional(Types),
 
   /**
-	TypeScript types resolutions.
+  TypeScript types resolutions.
   @see {@link https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html#version-selection-with-typesversions}
   */
   typesVersions: z.optional(TypesVersions),
@@ -349,16 +349,16 @@ export const PackageJson = z.looseObject({
   packageManager: z.optional(PackageManager),
 
   /**
-	False if importing modules from the package does not cause side effects.
-	True or a list of file patterns if importing modules from the package causes side effects.
-	@see {@link https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free}
-	*/
+  False if importing modules from the package does not cause side effects.
+  True or a list of file patterns if importing modules from the package causes side effects.
+  @see {@link https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free}
+  */
   sideEffects: z.optional(SideEffects),
 
   /**
-	Imports map.
-	@see {@link https://nodejs.org/api/packages.html#imports}
-	*/
+  Imports map.
+  @see {@link https://nodejs.org/api/packages.html#imports}
+  */
   imports: z.optional(Imports),
 
   /**
