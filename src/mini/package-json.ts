@@ -136,6 +136,12 @@ export const PackageJson = z.looseObject({
   /** Scripts used in the package. */
   scripts: z.optional(z.record(z.string(), z.string())),
 
+  /**
+  Prevent npm from building a module with node-gyp.
+  @see {@link https://docs.npmjs.com/cli/v12/configuring-npm/package-json#gypfile}
+  */
+  gypfile: z.optional(z.boolean()),
+
   /** Configuration values for scripts. */
   config: z.optional(z.record(z.string(), z.unknown())),
 
