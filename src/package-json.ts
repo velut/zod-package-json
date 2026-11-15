@@ -95,6 +95,8 @@ const PeerDependenciesMeta = z.record(z.string(), z.object({ optional: z.boolean
 
 const BundleDependencies = z.union([z.boolean(), z.array(z.string())]);
 
+const Overrides = z.record(z.string(), z.unknown());
+
 const DevEngineDependency = z.object({
   name: z.string(),
   version: z.optional(z.string()),
@@ -213,7 +215,7 @@ export const PackageJson = z.looseObject({
   optionalDependencies: z.optional(Dependencies),
 
   /** Overrides for dependency resolution using npm. */
-  overrides: z.optional(z.record(z.string(), z.unknown())),
+  overrides: z.optional(Overrides),
 
   /**
   Overrides to let npm repair the manifests of third-party packages.
