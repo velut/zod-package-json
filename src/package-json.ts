@@ -20,6 +20,15 @@ const Bugs = z.union([
 
 const License = z.string();
 
+const Person = z.union([
+  z.string(),
+  z.object({
+    name: z.string(),
+    email: z.optional(z.string()),
+    url: z.optional(z.string()),
+  }),
+]);
+
 const Funding = z.union([
   z.string(),
   z.object({
@@ -35,15 +44,6 @@ const Funding = z.union([
       }),
     ]),
   ),
-]);
-
-const Person = z.union([
-  z.string(),
-  z.object({
-    name: z.string(),
-    email: z.optional(z.string()),
-    url: z.optional(z.string()),
-  }),
 ]);
 
 const Repository = z.union([
