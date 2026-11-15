@@ -87,6 +87,8 @@ const Scripts = z.record(z.string(), z.string());
 
 const Gypfile = z.boolean();
 
+const Config = z.record(z.string(), z.unknown());
+
 const DevEngineDependency = z.object({
   name: z.string(),
   version: z.optional(z.string()),
@@ -181,7 +183,7 @@ export const PackageJson = z.looseObject({
   gypfile: z.optional(Gypfile),
 
   /** Configuration values for scripts. */
-  config: z.optional(z.record(z.string(), z.unknown())),
+  config: z.optional(Config),
 
   /** Production dependencies. */
   dependencies: z.optional(z.record(z.string(), z.string())),
