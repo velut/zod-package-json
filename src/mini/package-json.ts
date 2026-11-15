@@ -113,7 +113,7 @@ const Os = z.array(z.string());
 
 const Cpu = z.array(z.string());
 
-const LibC = z.string();
+const LibC = z.union([z.string(), z.array(z.string())]);
 
 const DevEngineDependency = z.object({
   name: z.string(),
