@@ -63,6 +63,8 @@ const Type = z.literal(["module", "commonjs"]);
 
 const Browser = z.union([z.string(), z.record(z.string(), z.union([z.string(), z.boolean()]))]);
 
+const Bin = z.union([z.string(), z.record(z.string(), z.string())]);
+
 const Repository = z.union([
   z.string(),
   z.object({
@@ -150,7 +152,7 @@ export const PackageJson = z.looseObject({
   browser: z.optional(Browser),
 
   /** Executable files. */
-  bin: z.optional(z.union([z.string(), z.record(z.string(), z.string())])),
+  bin: z.optional(Bin),
 
   /** Documentation to be used with the `man` command. */
   man: z.optional(z.union([z.string(), z.array(z.string())])),
