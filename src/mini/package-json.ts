@@ -106,11 +106,11 @@ export const PackageJson = z.looseObject({
     z.union([z.null(), z.string(), z.array(z.string()), z.record(z.string(), z.unknown())]),
   ),
 
-  /** Type for all the `.js` files in the package, usually `module`. */
-  type: z.optional(z.literal(["module", "commonjs"])),
-
   /** Main entry point for the package, usually CommonJS. */
   main: z.optional(z.string()),
+
+  /** Type for all the `.js` files in the package, usually `module`. */
+  type: z.optional(z.literal(["module", "commonjs"])),
 
   /**
 	Main entry point for the package when used in a browser environment.
