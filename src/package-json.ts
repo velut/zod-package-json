@@ -145,6 +145,12 @@ const Types = z.string();
 
 const TypesVersions = z.record(z.string(), z.record(z.string(), z.array(z.string())));
 
+const PackageManager = z.string();
+
+const SideEffects = z.union([z.boolean(), z.array(z.string())]);
+
+const Imports = z.record(z.string(), z.unknown());
+
 export const PackageJson = z.looseObject({
   /** Package name. */
   name: Name,
@@ -302,20 +308,20 @@ export const PackageJson = z.looseObject({
   Corepack package manager.
   @see {@link https://nodejs.org/api/corepack.html}
   */
-  packageManager: z.optional(z.string()),
+  packageManager: z.optional(PackageManager),
 
   /**
 	False if importing modules from the package does not cause side effects.
 	True or a list of file patterns if importing modules from the package causes side effects.
 	@see {@link https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free}
 	*/
-  sideEffects: z.optional(z.union([z.boolean(), z.array(z.string())])),
+  sideEffects: z.optional(SideEffects),
 
   /**
 	Imports map.
 	@see {@link https://nodejs.org/api/packages.html#imports}
 	*/
-  imports: z.optional(z.record(z.string(), z.unknown())),
+  imports: z.optional(Imports),
 });
 
 /**
