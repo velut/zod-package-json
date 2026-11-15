@@ -61,6 +61,8 @@ const Main = z.string();
 
 const Type = z.literal(["module", "commonjs"]);
 
+const Browser = z.union([z.string(), z.record(z.string(), z.union([z.string(), z.boolean()]))]);
+
 const Repository = z.union([
   z.string(),
   z.object({
@@ -145,9 +147,7 @@ export const PackageJson = z.looseObject({
 	@see {@link https://docs.npmjs.com/cli/v10/configuring-npm/package-json#browser}
 	@see {@link https://gist.github.com/defunctzombie/4339901/49493836fb873ddaa4b8a7aa0ef2352119f69211}
 	*/
-  browser: z.optional(
-    z.union([z.string(), z.record(z.string(), z.union([z.string(), z.boolean()]))]),
-  ),
+  browser: z.optional(Browser),
 
   /** Executable files. */
   bin: z.optional(z.union([z.string(), z.record(z.string(), z.string())])),
