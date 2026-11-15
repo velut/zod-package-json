@@ -107,6 +107,14 @@ const PackageExtensions = z.record(
   }),
 );
 
+const Engines = z.record(z.string(), z.string());
+
+const Os = z.array(z.string());
+
+const Cpu = z.array(z.string());
+
+const LibC = z.string();
+
 const DevEngineDependency = z.object({
   name: z.string(),
   version: z.optional(z.string()),
@@ -235,16 +243,16 @@ export const PackageJson = z.looseObject({
   packageExtensions: z.optional(PackageExtensions),
 
   /** Runtime systems supported by the package. */
-  engines: z.optional(z.record(z.string(), z.string())),
+  engines: z.optional(Engines),
 
   /** Operating systems supported by the package. */
-  os: z.optional(z.array(z.string())),
+  os: z.optional(Os),
 
   /** CPU architectures supported by the package. */
-  cpu: z.optional(z.array(z.string())),
+  cpu: z.optional(Cpu),
 
   /** Version of libc required to build or run this package on Linux. */
-  libc: z.optional(z.string()),
+  libc: z.optional(LibC),
 
   /** Tooling required to develop the package. */
   devEngines: z.optional(DevEngines),
