@@ -143,6 +143,8 @@ const Module = z.string();
 
 const Types = z.string();
 
+const TypesVersions = z.record(z.string(), z.record(z.string(), z.array(z.string())));
+
 export const PackageJson = z.looseObject({
   /** Package name. */
   name: Name,
@@ -294,7 +296,7 @@ export const PackageJson = z.looseObject({
 	TypeScript types resolutions.
   @see {@link https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html#version-selection-with-typesversions}
   */
-  typesVersions: z.optional(z.record(z.string(), z.record(z.string(), z.array(z.string())))),
+  typesVersions: z.optional(TypesVersions),
 
   /**
   Corepack package manager.
