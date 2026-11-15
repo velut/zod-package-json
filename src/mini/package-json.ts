@@ -1,5 +1,15 @@
 import * as z from "zod/mini";
 
+const Name = z.string();
+
+const Version = z.string();
+
+const Description = z.string();
+
+const Keywords = z.array(z.string());
+
+const Homepage = z.string();
+
 const Bugs = z.union([
   z.string(),
   z.object({
@@ -7,6 +17,19 @@ const Bugs = z.union([
     email: z.optional(z.string()),
   }),
 ]);
+
+const License = z.string();
+
+const Person = z.union([
+  z.string(),
+  z.object({
+    name: z.string(),
+    email: z.optional(z.string()),
+    url: z.optional(z.string()),
+  }),
+]);
+
+const People = z.array(Person);
 
 const Funding = z.union([
   z.string(),
@@ -25,14 +48,26 @@ const Funding = z.union([
   ),
 ]);
 
-const Person = z.union([
+const Files = z.array(z.string());
+
+const Exports = z.union([
+  z.null(),
   z.string(),
-  z.object({
-    name: z.string(),
-    email: z.optional(z.string()),
-    url: z.optional(z.string()),
-  }),
+  z.array(z.string()),
+  z.record(z.string(), z.unknown()),
 ]);
+
+const Main = z.string();
+
+const Type = z.literal(["module", "commonjs"]);
+
+const Browser = z.union([z.string(), z.record(z.string(), z.union([z.string(), z.boolean()]))]);
+
+const Bin = z.union([z.string(), z.record(z.string(), z.string())]);
+
+const Man = z.union([z.string(), z.array(z.string())]);
+
+const Directories = z.record(z.string(), z.string());
 
 const Repository = z.union([
   z.string(),
@@ -47,6 +82,38 @@ const Repository = z.union([
     directory: z.optional(z.string()),
   }),
 ]);
+
+const Scripts = z.record(z.string(), z.string());
+
+const Gypfile = z.boolean();
+
+const Config = z.record(z.string(), z.unknown());
+
+const Dependencies = z.record(z.string(), z.string());
+
+const PeerDependenciesMeta = z.record(z.string(), z.object({ optional: z.boolean() }));
+
+const BundleDependencies = z.union([z.boolean(), z.array(z.string())]);
+
+const Overrides = z.record(z.string(), z.unknown());
+
+const PackageExtensions = z.record(
+  z.string(),
+  z.object({
+    dependencies: z.optional(Dependencies),
+    optionalDependencies: z.optional(Dependencies),
+    peerDependencies: z.optional(Dependencies),
+    peerDependenciesMeta: z.optional(PeerDependenciesMeta),
+  }),
+);
+
+const Engines = z.record(z.string(), z.string());
+
+const Os = z.array(z.string());
+
+const Cpu = z.array(z.string());
+
+const LibC = z.string();
 
 const DevEngineDependency = z.object({
   name: z.string(),
@@ -64,192 +131,248 @@ const DevEngines = z.object({
   packageManager: z.optional(DevEngineDependencies),
 });
 
+const Private = z.boolean();
+
+const Workspaces = z.array(z.string());
+
+const Deprecated = z.string();
+
+const Module = z.string();
+
+const Types = z.string();
+
+const TypesVersions = z.record(z.string(), z.record(z.string(), z.array(z.string())));
+
+const PackageManager = z.string();
+
+const SideEffects = z.union([z.boolean(), z.array(z.string())]);
+
+const Imports = z.record(z.string(), z.unknown());
+
+// Configuration read by package managers when publishing a package.
+// See:
+// https://github.com/velut/zod-package-json/issues/86
+// https://docs.npmjs.com/cli/v12/using-npm/config#config-settings
+// https://pnpm.io/package_json#publishconfig
+// https://bun.com/docs/pm/cli/publish
+// https://yarnpkg.com/configuration/manifest#publishConfig
+const PublishConfig = z.looseObject({
+  // Properties described in pnpm's docs.
+  registry: z.optional(z.string()),
+  access: z.optional(z.literal(["public", "restricted", "private"])),
+  name: z.optional(z.string()),
+  executableFiles: z.optional(z.array(z.string())),
+  directory: z.optional(z.string()),
+  linkDirectory: z.optional(z.boolean()),
+  variants: z.optional(
+    z.array(
+      z.object({
+        targets: z.optional(z.array(z.string())),
+        files: z.optional(z.array(z.string())),
+        manifest: z.optional(z.record(z.string(), z.unknown())),
+      }),
+    ),
+  ),
+
+  // Other known properties.
+  provenance: z.optional(z.boolean()),
+  tag: z.optional(z.string()),
+
+  // Other overridable properties with respect to the containing package.json manifest.
+  bin: z.optional(Bin),
+  browser: z.optional(Browser),
+  cpu: z.optional(Cpu),
+  engines: z.optional(Engines),
+  exports: z.optional(Exports),
+  main: z.optional(Main),
+  module: z.optional(Module),
+  os: z.optional(Os),
+  types: z.optional(Types),
+  typings: z.optional(Types),
+  typesVersions: z.optional(TypesVersions),
+});
+
 export const PackageJson = z.looseObject({
   /** Package name. */
-  name: z.string(),
+  name: Name,
 
   /** Package semver version number. */
-  version: z.string(),
+  version: Version,
 
   /** Description for the package. */
-  description: z.optional(z.string()),
+  description: z.optional(Description),
 
   /** List of keywords for searching the package. */
-  keywords: z.optional(z.array(z.string())),
+  keywords: z.optional(Keywords),
 
   /** URL of the package's homepage. */
-  homepage: z.optional(z.string()),
+  homepage: z.optional(Homepage),
 
   /** Issue tracker for the package. */
   bugs: z.optional(Bugs),
 
   /** SPDX license expression or a custom license. */
-  license: z.optional(z.string()),
+  license: z.optional(License),
 
   /** Author of the package. */
   author: z.optional(Person),
 
   /** Contributors to the package. */
-  contributors: z.optional(z.array(Person)),
+  contributors: z.optional(People),
 
   /** Maintainers of the package. */
-  maintainers: z.optional(z.array(Person)),
+  maintainers: z.optional(People),
 
   /** Funding options for the package. */
   funding: z.optional(Funding),
 
   /** File patterns for files to be included when publishing the package. */
-  files: z.optional(z.array(z.string())),
-
-  /** Package exports. @see {@link https://nodejs.org/api/packages.html#exports} */
-  exports: z.optional(
-    z.union([z.null(), z.string(), z.array(z.string()), z.record(z.string(), z.unknown())]),
-  ),
-
-  /** Main entry point for the package, usually CommonJS. */
-  main: z.optional(z.string()),
-
-  /** Type for all the `.js` files in the package, usually `module`. */
-  type: z.optional(z.literal(["module", "commonjs"])),
+  files: z.optional(Files),
 
   /**
-	Main entry point for the package when used in a browser environment.
-	@see {@link https://docs.npmjs.com/cli/v10/configuring-npm/package-json#browser}
-	@see {@link https://gist.github.com/defunctzombie/4339901/49493836fb873ddaa4b8a7aa0ef2352119f69211}
-	*/
-  browser: z.optional(
-    z.union([z.string(), z.record(z.string(), z.union([z.string(), z.boolean()]))]),
-  ),
+  Package exports.
+  @see {@link https://nodejs.org/api/packages.html#exports}
+  */
+  exports: z.optional(Exports),
+
+  /** Main entry point for the package, usually CommonJS. */
+  main: z.optional(Main),
+
+  /** Type for all the `.js` files in the package, usually `module`. */
+  type: z.optional(Type),
+
+  /**
+  Main entry point for the package when used in a browser environment.
+  @see {@link https://docs.npmjs.com/cli/v12/configuring-npm/package-json#browser}
+  @see {@link https://gist.github.com/defunctzombie/4339901/49493836fb873ddaa4b8a7aa0ef2352119f69211}
+  */
+  browser: z.optional(Browser),
 
   /** Executable files. */
-  bin: z.optional(z.union([z.string(), z.record(z.string(), z.string())])),
+  bin: z.optional(Bin),
 
   /** Documentation to be used with the `man` command. */
-  man: z.optional(z.union([z.string(), z.array(z.string())])),
+  man: z.optional(Man),
 
   /** Directories in the package. */
-  directories: z.optional(z.record(z.string(), z.string())),
+  directories: z.optional(Directories),
 
   /** Repository for the package's source code. */
   repository: z.optional(Repository),
 
   /** Scripts used in the package. */
-  scripts: z.optional(z.record(z.string(), z.string())),
+  scripts: z.optional(Scripts),
 
   /**
-  Prevent npm from building a module with node-gyp.
+  Prevent npm from building a module with node-gyp, usually `false`.
   @see {@link https://docs.npmjs.com/cli/v12/configuring-npm/package-json#gypfile}
   */
-  gypfile: z.optional(z.boolean()),
+  gypfile: z.optional(Gypfile),
 
   /** Configuration values for scripts. */
-  config: z.optional(z.record(z.string(), z.unknown())),
+  config: z.optional(Config),
 
   /** Production dependencies. */
-  dependencies: z.optional(z.record(z.string(), z.string())),
+  dependencies: z.optional(Dependencies),
 
   /** Development dependencies. */
-  devDependencies: z.optional(z.record(z.string(), z.string())),
+  devDependencies: z.optional(Dependencies),
 
   /** Peer dependencies. */
-  peerDependencies: z.optional(z.record(z.string(), z.string())),
+  peerDependencies: z.optional(Dependencies),
 
   /** Metadata about peer dependencies. */
-  peerDependenciesMeta: z.optional(z.record(z.string(), z.object({ optional: z.boolean() }))),
+  peerDependenciesMeta: z.optional(PeerDependenciesMeta),
 
   /** Dependencies bundled with the package. */
-  bundleDependencies: z.optional(z.union([z.boolean(), z.array(z.string())])),
+  bundleDependencies: z.optional(BundleDependencies),
 
   /** Dependencies bundled with the package (equivalent to `bundleDependencies`). */
-  bundledDependencies: z.optional(z.union([z.boolean(), z.array(z.string())])),
+  bundledDependencies: z.optional(BundleDependencies),
 
   /** Optional dependencies. */
-  optionalDependencies: z.optional(z.record(z.string(), z.string())),
+  optionalDependencies: z.optional(Dependencies),
 
   /** Overrides for dependency resolution using npm. */
-  overrides: z.optional(z.record(z.string(), z.unknown())),
+  overrides: z.optional(Overrides),
 
   /**
   Overrides to let npm repair the manifests of third-party packages.
   Available only in private packages and unpublished packages.
   @see {@link https://docs.npmjs.com/cli/v12/configuring-npm/package-json#packageextensions}
   */
-  packageExtensions: z.optional(
-    z.record(
-      z.string(),
-      z.object({
-        dependencies: z.optional(z.record(z.string(), z.string())),
-        optionalDependencies: z.optional(z.record(z.string(), z.string())),
-        peerDependencies: z.optional(z.record(z.string(), z.string())),
-        peerDependenciesMeta: z.optional(z.record(z.string(), z.object({ optional: z.boolean() }))),
-      }),
-    ),
-  ),
+  packageExtensions: z.optional(PackageExtensions),
 
   /** Runtime systems supported by the package. */
-  engines: z.optional(z.record(z.string(), z.string())),
+  engines: z.optional(Engines),
 
   /** Operating systems supported by the package. */
-  os: z.optional(z.array(z.string())),
+  os: z.optional(Os),
 
   /** CPU architectures supported by the package. */
-  cpu: z.optional(z.array(z.string())),
+  cpu: z.optional(Cpu),
 
   /** Version of libc required to build or run this package on Linux. */
-  libc: z.optional(z.string()),
+  libc: z.optional(LibC),
 
   /** Tooling required to develop the package. */
   devEngines: z.optional(DevEngines),
 
   /** True if the package should not be published. */
-  private: z.optional(z.boolean()),
-
-  /** Configuration values used at publishing time. */
-  publishConfig: z.optional(z.record(z.string(), z.unknown())),
+  private: z.optional(Private),
 
   /** File patterns for locating local workspaces. */
-  workspaces: z.optional(z.array(z.string())),
+  workspaces: z.optional(Workspaces),
 
   /** Deprecation message. */
-  deprecated: z.optional(z.string()),
+  deprecated: z.optional(Deprecated),
 
   /** Main ESM entry point for the package. */
-  module: z.optional(z.string()),
+  module: z.optional(Module),
 
   /** Main TypeScript declaration file. */
-  types: z.optional(z.string()),
+  types: z.optional(Types),
 
   /** Main TypeScript declaration file (equivalent to `types`). */
-  typings: z.optional(z.string()),
+  typings: z.optional(Types),
 
   /**
-	TypeScript types resolutions.
+  TypeScript types resolutions.
   @see {@link https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html#version-selection-with-typesversions}
   */
-  typesVersions: z.optional(z.record(z.string(), z.record(z.string(), z.array(z.string())))),
+  typesVersions: z.optional(TypesVersions),
 
   /**
   Corepack package manager.
   @see {@link https://nodejs.org/api/corepack.html}
   */
-  packageManager: z.optional(z.string()),
+  packageManager: z.optional(PackageManager),
 
   /**
-	False if importing modules from the package does not cause side effects.
-	True or a list of file patterns if importing modules from the package causes side effects.
-	@see {@link https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free}
-	*/
-  sideEffects: z.optional(z.union([z.boolean(), z.array(z.string())])),
+  False if importing modules from the package does not cause side effects.
+  True or a list of file patterns if importing modules from the package causes side effects.
+  @see {@link https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free}
+  */
+  sideEffects: z.optional(SideEffects),
 
   /**
-	Imports map.
-	@see {@link https://nodejs.org/api/packages.html#imports}
-	*/
-  imports: z.optional(z.record(z.string(), z.unknown())),
+  Imports map.
+  @see {@link https://nodejs.org/api/packages.html#imports}
+  */
+  imports: z.optional(Imports),
+
+  /**
+  Configuration read by package managers when publishing a package.
+  @see {@link https://docs.npmjs.com/cli/v12/using-npm/config#config-settings}
+  @see {@link https://pnpm.io/package_json#publishconfig}
+  @see {@link https://bun.com/docs/pm/cli/publish}
+  @see {@link https://yarnpkg.com/configuration/manifest#publishConfig}
+  */
+  publishConfig: z.optional(PublishConfig),
 });
 
 /**
 `PackageJson` describes the manifest for a package found in the `package.json` file.
-@see {@link https://docs.npmjs.com/cli/v10/configuring-npm/package-json}
+@see {@link https://docs.npmjs.com/cli/v12/configuring-npm/package-json}
 */
 export type PackageJson = z.infer<typeof PackageJson>;
