@@ -57,6 +57,8 @@ const Exports = z.union([
   z.record(z.string(), z.unknown()),
 ]);
 
+const Main = z.string();
+
 const Repository = z.union([
   z.string(),
   z.object({
@@ -131,7 +133,7 @@ export const PackageJson = z.looseObject({
   exports: z.optional(Exports),
 
   /** Main entry point for the package, usually CommonJS. */
-  main: z.optional(z.string()),
+  main: z.optional(Main),
 
   /** Type for all the `.js` files in the package, usually `module`. */
   type: z.optional(z.literal(["module", "commonjs"])),
