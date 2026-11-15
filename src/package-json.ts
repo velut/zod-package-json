@@ -50,6 +50,13 @@ const Funding = z.union([
 
 const Files = z.array(z.string());
 
+const Exports = z.union([
+  z.null(),
+  z.string(),
+  z.array(z.string()),
+  z.record(z.string(), z.unknown()),
+]);
+
 const Repository = z.union([
   z.string(),
   z.object({
@@ -117,10 +124,11 @@ export const PackageJson = z.looseObject({
   /** File patterns for files to be included when publishing the package. */
   files: z.optional(Files),
 
-  /** Package exports. @see {@link https://nodejs.org/api/packages.html#exports} */
-  exports: z.optional(
-    z.union([z.null(), z.string(), z.array(z.string()), z.record(z.string(), z.unknown())]),
-  ),
+  /**
+  Package exports.
+  @see {@link https://nodejs.org/api/packages.html#exports}
+  */
+  exports: z.optional(Exports),
 
   /** Main entry point for the package, usually CommonJS. */
   main: z.optional(z.string()),
