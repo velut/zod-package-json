@@ -49,12 +49,11 @@
     "lint": "oxfmt --check",
     "format": "oxfmt",
     "pre-push": "bun install && bun run lint && bun run build && bun run test:ci && bun run attw",
-    "release": "np --no-cleanup"
+    "release": "bunx np --no-cleanup"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
     "@vitest/coverage-v8": "^5.1.0",
-    "np": "^12.0.0",
     "oxfmt": "^0.78.0",
     "typescript": "^6.0.2",
     "vitest": "^5.1.0",
