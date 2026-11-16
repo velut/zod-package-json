@@ -49,7 +49,7 @@
     "lint": "oxfmt --check",
     "format": "oxfmt",
     "pre-push": "bun install && bun run lint && bun run build && bun run test:ci && bun run attw",
-    "release": "bunx np --no-cleanup"
+    "release": "npx np --no-cleanup --stage"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
