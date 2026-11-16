@@ -64,7 +64,7 @@
     "zod": "^4.0.0"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "zshy": {
     "exports": {
