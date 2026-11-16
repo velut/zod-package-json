@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - None
 
+## [3.0.0] - 2026-11-16
+
+### Added
+
+- `packageExtensions` property
+- `gypfile` property
+
+### Changed
+
+- BREAKING CHANGE: require Node 22
+- `publishConfig` property now parses many known properties (See https://github.com/velut/zod-package-json/issues/86) (Thanks @michaelfaith)
+- `libc` property changed from `string` to `string | string[]` (See https://github.com/velut/query-registry/issues/546) (Thanks @trackoor and ucsbplse.github.io)
+
 ## [2.1.0] - 2025-08-26
 
 ### Changed
@@ -59,7 +72,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add booleans to the `browser` object values (a1de691)
 - Widen `config` object values to `unknown` (95224f9)
 
-[unreleased]: https://github.com/velut/zod-package-json/compare/v2.1.0...HEAD
+[unreleased]: https://github.com/velut/zod-package-json/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/velut/zod-package-json/compare/v2.1.0...v3.0.0
 [2.1.0]: https://github.com/velut/zod-package-json/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/velut/zod-package-json/compare/v1.2.0...v2.0.0
 [1.2.0]: https://github.com/velut/zod-package-json/compare/v1.1.0...v1.2.0
